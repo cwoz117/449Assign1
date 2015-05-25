@@ -35,7 +35,9 @@ chr i = (toEnum i)::Char
 -- |	        between 0, and 25 inclusively (A = 0, B = 1 etc..)            | --
 -- |          -Restrictions: uppercase chars only, otherwise the            | --
 -- |                        function only returns 25                        | --
--- |          -test_aToN quickCheck Function provided                       | --
+-- |          -test_aToN quickCheck Function provided primarily             | --
+-- |           to confirm values will be set to 25 if outside               | --
+-- |           the specified range.                                         | --
 -- |                                                                        | --
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
 aToN :: Char -> Int
@@ -45,8 +47,9 @@ aToN n
 	| otherwise    = ((ord n ) - 65)
 
 test_aToN :: Char -> Bool
-test_aToN a =
-            0 == 0
+test_aToN a
+	| (((ord a)-65) > 25) || (((ord a) -65) < 0) 	= ((aToN a) == 25)
+	| otherwise 	= (((ord a) -65) == (aToN a))
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 -- |                         KeyMask generation                             | --
@@ -74,7 +77,6 @@ test_keyMask :: [Char] -> [Char] -> Bool
 test_keyMask a b
       | ((a == []) || (b == []))      	= True
       | length (keyMask a b) == length b 	= True
-      | otherwise    				= False
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 -- |                         Encryption Function                            | --
@@ -99,14 +101,11 @@ encHlp k m
 	| otherwise	= chr ((((aToN (head k)) + (aToN (head m))) `mod` 26) + 65) :
 			  (encHlp (tail k) (tail m))
 
-
--- - - - - - - - - - - - - - - -| Test Encoding |- - - - - - - - - - - - - - - -
 test_encode :: [Char] -> [Char] -> Bool
 test_encode k m
       | ((k == []) || (m == [])) = True
 	| (cMsg m) == (decode (cMsg k) (encode (cMsg k) (cMsg m))) = True
 
--- - - - - - - - - - - - - - | Message Conditioner | - - - - - - - - - - - - - -
 cMsg :: [Char] -> [Char]
 cMsg a
 	| a == [] = []
