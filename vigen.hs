@@ -1,7 +1,7 @@
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |			CPSC449 Programming Paradigms Assignment 1                | --
--- |					  Chris Wozniak                               | --
--- |					    10109820                                  | --
+-- |			CPSC449 Programming Paradigms Assignment 1                  | --
+-- |					  Chris Wozniak                              	    | --
+-- |					    10109820                                  	  	| --
 -- |                                                                        | --
 -- | 		This Module contains functions for encrypting and               | --
 -- | 		decrypting Vigenere Ciphers.                                    | --
@@ -17,7 +17,7 @@
 import Test.QuickCheck
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |					Provided Functions				    | --
+-- |						Provided Functions				   				| --
 -- |                                                                        | --
 -- |          Provided functions to switch between ASCII code               | --
 -- |                                                                        | --
@@ -29,10 +29,10 @@ chr :: Int -> Char
 chr i = (toEnum i)::Char
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |			      ASCII Chars to Integers (0-25)			    | --
+-- |			      ASCII Chars to Integers (0-25)			   			| --
 -- |                                                                        | --
 -- |          Turns an ASCII Character into a numerical value               | --
--- |	        between 0, and 25 inclusively (A = 0, B = 1 etc..)            | --
+-- |	        between 0, and 25 inclusively (A = 0, B = 1 etc..)          | --
 -- |          -Restrictions: uppercase chars only, otherwise the            | --
 -- |                        function only returns 25                        | --
 -- |          -test_aToN quickCheck Function provided                       | --
@@ -49,7 +49,7 @@ test_aToN a =
             0 == 0
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |			            KeyMask generation				    | --
+-- |			            KeyMask generation				    			| --
 -- |                                                                        | --
 -- |          Keymask takes your key, and generates a string of             | --
 -- |          equal length so that we can properly map our encoded          | --
@@ -78,7 +78,7 @@ test_keyMask a b
       | otherwise    = False
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |			    		Encryption Function				    | --
+-- |			    		Encryption Function				    			| --
 -- |                                                                        | --
 -- |          Encode takes the key and message provided, and                | --
 -- |          generates our encoded message. It uses the                    | --
@@ -101,7 +101,7 @@ test_encode k m
       | k == [] = True
       | m == [] = True
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |			    		Decryption Function				    | --
+-- |			    		Decryption Function				    			| --
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
 decode :: [Char] -> [Char] -> [Char]
 decode k cryp = decHlp (keyMask k cryp) cryp
