@@ -33,9 +33,9 @@ chr i = (toEnum i)::Char
 -- |                                                                        | --
 -- |          Turns an ASCII Character into a numerical value               | --
 -- |	        between 0, and 25 inclusively (A = 0, B = 1 etc..)            | --
--- |          -Restrictions: uppercase chars only, otherwise the             | --
+-- |          -Restrictions: uppercase chars only, otherwise the            | --
 -- |                        function only returns 25                        | --
--- |          -test_aToN quickCheck Function provided                        | --
+-- |          -test_aToN quickCheck Function provided                       | --
 -- |                                                                        | --
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
 aToN :: Char -> Int
@@ -101,7 +101,7 @@ test_encode k m
       | k == [] = True
       | m == [] = True
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
--- |			    		Decryption Function				  | --
+-- |			    		Decryption Function				    | --
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
 decode :: [Char] -> [Char] -> [Char]
 decode k cryp = decHlp (keyMask k cryp) cryp
